@@ -24,9 +24,40 @@ class _HistoryHomeState extends State<HistoryHome> {
               left: 50,
               right: 50,
             ),
-            child: const Center(
-              child: Text("History Logging"),
-            )
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: 50
+                      ,
+                    ),
+                    child: const Text(
+                      "History Logging",
+                      style: TextStyle(
+                        color: HistColours.cForward,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 36,
+                      ),
+                    )
+                  ),
+                ),
+
+                const Divider(
+                  thickness: 3,
+                  color: HistColours.cForward,
+                ),
+
+                const Divider(
+                  thickness: 2,
+                  color: HistColours.cForward,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+              ]
+            ),
           ),
           Container(
             height: screenHeight * 0.6,
@@ -37,9 +68,9 @@ class _HistoryHomeState extends State<HistoryHome> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.black54,
-                  blurRadius: 15,
+                  blurRadius: 2,
                   spreadRadius: 0.0,
-                  offset: Offset(0, 10),
+                  offset: Offset(0,5),
                 )
               ],
             ),
@@ -95,12 +126,12 @@ TextButton menuButton(String titleText, double screenWidth) {
       titleText,
       style: const TextStyle(
         color: HistColours.cBack,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontSize: 24,
       ),
     ),
     style: TextButton.styleFrom(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 10,
         bottom: 10,
         left: 30,
