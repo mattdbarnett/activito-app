@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
 
@@ -45,31 +44,36 @@ class _HistoryHomeState extends State<HistoryHome> {
               ],
             ),
             child: Container(
-              padding: const EdgeInsets.all(50),
+              padding: const EdgeInsets.all(40),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextButton(
-                    onPressed: () {  },
-                    child: const Text(
-                      "Test",
-                      style: TextStyle(
-                        color: HistColours.cBack,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
+                  menuButton("View List", screenWidth),
+                  const SizedBox(height: 30),
+                  menuButton("Add Records", screenWidth),
+                  const SizedBox(height: 30),
+                  menuButton("Add Types", screenWidth),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: HistColours.cHighlight,
+                          elevation: 5,
+                          fixedSize: const Size.fromRadius(40),
+                          shape: const CircleBorder(),
+                        ),
+                        onPressed: () {},
+                        child: const Icon(
+                          Icons.settings,
+                          size: 40,
+                          color: HistColours.cText,
+                        ),
                       ),
-                    ),
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.only(
-                        top: 10,
-                        bottom: 10,
-                        left: 50,
-                        right: 50,
-                      ),
-                      backgroundColor: HistColours.cHighlight,
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0)),
-                    ),
+                    ],
                   )
                 ],
               ),
@@ -82,4 +86,30 @@ class _HistoryHomeState extends State<HistoryHome> {
       ),
     );
   }
+}
+
+TextButton menuButton(String titleText, double screenWidth) {
+  return TextButton(
+    onPressed: () {  },
+    child: Text(
+      titleText,
+      style: const TextStyle(
+        color: HistColours.cBack,
+        fontWeight: FontWeight.w500,
+        fontSize: 24,
+      ),
+    ),
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.only(
+        top: 10,
+        bottom: 10,
+        left: 30,
+        right: 30,
+      ),
+      backgroundColor: HistColours.cHighlight,
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0)),
+    ),
+  );
 }
