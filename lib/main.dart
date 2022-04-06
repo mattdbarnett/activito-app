@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/classes/colours.dart';
 import 'package:history_logging_app/pages/home.dart';
 
 void main() {
@@ -13,8 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: HistColours.cBack,
+            secondary: HistColours.cBack,
+            brightness: Brightness.light,
+            /* light theme settings */
+          )),
       home: const HistoryHome(),
     );
   }
