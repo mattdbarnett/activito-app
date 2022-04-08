@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
+import 'package:history_logging_app/pages/recordlist.dart';
 
 class HistoryHome extends StatefulWidget {
   const HistoryHome ({Key? key}) : super(key: key);
@@ -80,11 +81,11 @@ class _HistoryHomeState extends State<HistoryHome> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  menuButton("View List", screenWidth),
+                  menuButton(context, "View List", screenWidth, const HistoryList()),
                   const SizedBox(height: 30),
-                  menuButton("Add Records", screenWidth),
+                  menuButton(context, "Add Records", screenWidth, const HistoryList()),
                   const SizedBox(height: 30),
-                  menuButton("Add Types", screenWidth),
+                  menuButton(context, "Add Types", screenWidth, const HistoryList()),
                   const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -119,9 +120,12 @@ class _HistoryHomeState extends State<HistoryHome> {
   }
 }
 
-TextButton menuButton(String titleText, double screenWidth) {
+TextButton menuButton(BuildContext context, String titleText, double screenWidth, var newPage) {
   return TextButton(
-    onPressed: () {  },
+    onPressed: () {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => newPage));
+    },
     child: Text(
       titleText,
       style: const TextStyle(
