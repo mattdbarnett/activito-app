@@ -17,14 +17,47 @@ class _HistoryHomeState extends State<HistoryList> {
       backgroundColor: HistColours.cBack,
       appBar: secondaryAppbar(context),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          Center(
-            child: Text(
-              "Placeholder - List",
-              style: TextStyle(
-                fontSize: 32
+        children: [
+          Row(
+            children: [
+              const Spacer(),
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: HistColours.cHighlight,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0)),
+                ),
+                onPressed: () {  },
+                child: const Text(
+                  "Clear",
+                  style: TextStyle(
+                    color: HistColours.cBack,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(
+                left: 5,
+                right: 5,
+                ),
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 20,
+                top: 10,
+                ),
+              decoration: BoxDecoration(
+              border: Border.all(color: HistColours.cHighlight),
+              borderRadius: const BorderRadius.all(
+              Radius.circular(20),
+              ),
               ),
             )
           ),
