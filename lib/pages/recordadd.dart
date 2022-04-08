@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 
-class HistoryList extends StatefulWidget {
-  const HistoryList ({Key? key}) : super(key: key);
+class HistoryAddRecord extends StatefulWidget {
+  const HistoryAddRecord ({Key? key}) : super(key: key);
 
   @override
-  State<HistoryList> createState() => _HistoryHomeState();
+  State<HistoryAddRecord> createState() => _HistoryAddRecordState();
 }
 
-class _HistoryHomeState extends State<HistoryList> {
+class _HistoryAddRecordState extends State<HistoryAddRecord> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +21,12 @@ class _HistoryHomeState extends State<HistoryList> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Center(
-            child: Text(
-              "Placeholder - List",
-              style: TextStyle(
-                fontSize: 32
-              ),
-            )
+              child: Text(
+                "Placeholder - Add Record",
+                style: TextStyle(
+                    fontSize: 32
+                ),
+              )
           ),
         ],
       ),
