@@ -11,36 +11,37 @@ class HistoryList extends StatefulWidget {
 }
 
 class _HistoryHomeState extends State<HistoryList> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HistColours.cBack,
-      appBar: secondaryAppbar(context),
+      appBar: secondaryAppbar(
+        context,
+        [
+          const Spacer(),
+          TextButton(
+            onPressed: () {  },
+            style: TextButton.styleFrom(
+              backgroundColor: HistColours.cHighlight,
+              elevation: 1,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+            ),
+            child: const Text(
+              "Clear",
+              style: TextStyle(
+                color: HistColours.cBack,
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+              ),
+            ),
+          ),
+
+        ]
+      ),
       body: Column(
         children: [
-          Row(
-            children: [
-              const Spacer(),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: HistColours.cHighlight,
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0)),
-                ),
-                onPressed: () {  },
-                child: const Text(
-                  "Clear",
-                  style: TextStyle(
-                    color: HistColours.cBack,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              const Spacer(),
-            ],
-          ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.only(
