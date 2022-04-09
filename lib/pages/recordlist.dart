@@ -21,12 +21,23 @@ class _HistoryHomeState extends State<HistoryList> {
         [
           const Spacer(),
           TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              backgroundColor: HistColours.cHighlight,
+              elevation: 1,
+              fixedSize: const Size(47, 47),
+              shape: const CircleBorder(),
+          ),
+            child: const Icon(Icons.filter_alt)
+          ),
+          TextButton(
             onPressed: () {  },
             style: TextButton.styleFrom(
               backgroundColor: HistColours.cHighlight,
               elevation: 1,
+              fixedSize: const Size.fromHeight(47),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(40.0)),
             ),
             child: const Text(
               "Clear",
