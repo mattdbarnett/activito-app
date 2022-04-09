@@ -41,7 +41,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                     child: const Text(
                       "History Logging",
                       style: TextStyle(
-                        color: HistColours.cForward,
+                        color: HistColours.cHighlight,
                         fontWeight: FontWeight.w900,
                         fontSize: 36,
                       ),
@@ -67,16 +67,7 @@ class _HistoryHomeState extends State<HistoryHome> {
             height: screenHeight * 0.6,
             width: screenWidth,
             decoration: const BoxDecoration(
-              color: HistColours.cForward,
               borderRadius: BorderRadius.all(Radius.circular(45)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black54,
-                  blurRadius: 2,
-                  spreadRadius: 0.0,
-                  offset: Offset(0,5),
-                )
-              ],
             ),
             child: Container(
               padding: const EdgeInsets.all(40),
@@ -97,7 +88,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                       TextButton(
                         style: TextButton.styleFrom(
                           backgroundColor: HistColours.cHighlight,
-                          elevation: 5,
+                          elevation: 2,
                           fixedSize: const Size.fromRadius(40),
                           shape: const CircleBorder(),
                         ),
@@ -144,13 +135,13 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
       padding: const EdgeInsets.only(
         top: 10,
         bottom: 10,
-        left: 30,
-        right: 30,
+        left: 20,
+        right: 20,
       ),
       backgroundColor: HistColours.cHighlight,
-      elevation: 5,
+      elevation: 2,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0)),
+          borderRadius: BorderRadius.circular(40.0)),
     ),
   );
 }

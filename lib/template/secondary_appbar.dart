@@ -23,15 +23,19 @@ AppBar secondaryAppbar(BuildContext context, [List<Widget> inputActions = const 
   );
 }
 
-FloatingActionButton appbarBack(BuildContext context) {
-  return FloatingActionButton(
-    elevation: 1,
-    highlightElevation: 3,
-    backgroundColor: HistColours.cHighlight,
-    key: const Key('DrawerButton'),
-    onPressed: () {
-      Navigator.of(context).pop();
-    },
-    child: const Icon(Icons.arrow_back),
+SizedBox appbarBack(BuildContext context) {
+  return SizedBox(
+    width: 47,
+    height: 47,
+    child: FloatingActionButton(
+      elevation: 1,
+      highlightElevation: 1 ,
+      backgroundColor: HistColours.cHighlight,
+      key: const Key('DrawerButton'),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: const Icon(Icons.arrow_back),
+    )
   );
 }
