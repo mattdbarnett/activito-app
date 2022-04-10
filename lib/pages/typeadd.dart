@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 
-class HistorySettings extends StatefulWidget {
-  const HistorySettings ({Key? key}) : super(key: key);
+class HistoryAddType extends StatefulWidget {
+  const HistoryAddType ({Key? key}) : super(key: key);
 
   @override
-  State<HistorySettings> createState() => _HistorySettingsState();
+  State<HistoryAddType> createState() => _HistoryAddTypeState();
 }
 
-class _HistorySettingsState extends State<HistorySettings> {
+class _HistoryAddTypeState extends State<HistoryAddType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +22,20 @@ class _HistorySettingsState extends State<HistorySettings> {
         children: const [
           Center(
               child: Text(
-                "Placeholder - Settings",
+                "Placeholder - Add Type",
                 style: TextStyle(
                     fontSize: 32
                 ),
               )
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        heroTag: "btnadd",
+        tooltip: 'Add Type',
+        backgroundColor: HistColours.cHighlight,
+        child: const Icon(Icons.add),
       ),
     );
   }
