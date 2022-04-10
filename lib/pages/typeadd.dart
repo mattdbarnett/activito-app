@@ -30,6 +30,13 @@ class _HistoryAddTypeState extends State<HistoryAddType> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        heroTag: "btnadd",
+        tooltip: 'Add Type',
+        backgroundColor: HistColours.cHighlight,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
