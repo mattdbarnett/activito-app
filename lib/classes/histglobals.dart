@@ -1,6 +1,6 @@
 
 import 'package:history_logging_app/classes/record.dart';
-import 'package:history_logging_app/classes/type.dart';
+import 'package:history_logging_app/classes/recordtype.dart';
 
 List<Record> records = [];
 
@@ -12,10 +12,10 @@ void recordsClear() {
   records.clear();
 }
 
-List<Type> types = [];
+List<RecordType> types = [];
 
-void typesAdd(author, List<String> lines) {
-  types.add(Type(author, DateTime.now(), lines));
+void typesAdd(title, author, description, List<String> lines) {
+  types.add(RecordType(title, author, description, DateTime.now(), lines));
 }
 
 void typesRemove(removedType) {
