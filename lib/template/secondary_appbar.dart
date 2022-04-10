@@ -28,6 +28,8 @@ SizedBox appbarBack(BuildContext context) {
     width: 47,
     height: 47,
     child: FloatingActionButton(
+      heroTag: "btnback",
+      tooltip: 'Back',
       elevation: 1,
       highlightElevation: 1 ,
       backgroundColor: HistColours.cHighlight,
