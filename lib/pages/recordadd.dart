@@ -42,7 +42,6 @@ List<Widget> getRecordTypes(BuildContext context) {
   //EXAMPLE TYPE - TO BE REMOVED
   globals.typesAdd("test", "test", "test test", ["test test"]);
 
-
   if (globals.types.isNotEmpty) {
     for (int x = 0; x <= globals.types.length - 1; x++) {
       recordTypes.add(recordTypeContainer(context, globals.types[x]));

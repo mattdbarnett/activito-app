@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 
-class HistoryAddType extends StatefulWidget {
-  const HistoryAddType ({Key? key}) : super(key: key);
+class HistoryTypeAdd extends StatefulWidget {
+  const HistoryTypeAdd ({Key? key}) : super(key: key);
 
   @override
-  State<HistoryAddType> createState() => _HistoryAddTypeState();
+  State<HistoryTypeAdd> createState() => _HistoryTypeAddState();
 }
 
-class _HistoryAddTypeState extends State<HistoryAddType> {
+class _HistoryTypeAddState extends State<HistoryTypeAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,13 +29,6 @@ class _HistoryAddTypeState extends State<HistoryAddType> {
               )
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        heroTag: "btnadd",
-        tooltip: 'Add Type',
-        backgroundColor: HistColours.cHighlight,
-        child: const Icon(Icons.add),
       ),
     );
   }
