@@ -20,17 +20,19 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
     fontWeight: FontWeight.w900,
   );
 
-  InputDecoration formDecoration = const InputDecoration(
-      focusColor: HistColours.cHighlight,
-      labelText: 'Type Name',
-      labelStyle: TextStyle(
-        color: Colors.grey,
-        fontWeight: FontWeight.w900,
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: HistColours.cHighlight),
-      )
-  );
+  InputDecoration getFormDecoration(String label) {
+    return InputDecoration(
+        focusColor: HistColours.cHighlight,
+        labelText: label,
+        labelStyle: const TextStyle(
+          color: Colors.grey,
+          fontWeight: FontWeight.w900,
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: HistColours.cHighlight),
+        )
+    );
+  }
 
   validateField(value, String warning) {
     if (value == null || value.isEmpty) {
@@ -63,11 +65,35 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                   cursorColor: HistColours.cHighlight,
 
                   style: formTextStyle,
-                  decoration: formDecoration,
+                  decoration: getFormDecoration("Type Name"),
                   validator: (value) {
                     return validateField(value, 'Please enter the type name.');
                   },
                 ),
+
+                TextFormField(
+                  cursorColor: HistColours.cHighlight,
+                  maxLines: 2,
+
+                  style: formTextStyle,
+                  decoration: getFormDecoration("Record String"),
+                  validator: (value) {
+                    return validateField(value, 'Please enter the record string.');
+                  },
+                ),
+
+                TextFormField(
+                  cursorColor: HistColours.cHighlight,
+                  maxLines: 3,
+
+                  style: formTextStyle,
+                  decoration: getFormDecoration("Type Description"),
+                  validator: (value) {
+                    return validateField(value, 'Please enter the type description.');
+                  },
+                ),
+
+
                 Container(
                   width: screenWidth,
                   child: ElevatedButton(
