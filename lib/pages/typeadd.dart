@@ -14,6 +14,33 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
 
   final _formKey = GlobalKey<FormState>();
 
+  TextStyle formTextStyle = const TextStyle(
+    fontSize: 18,
+    color: HistColours.cForward,
+    fontWeight: FontWeight.w900,
+  );
+
+  InputDecoration formDecoration = const InputDecoration(
+      focusColor: HistColours.cHighlight,
+      labelText: 'Type Name',
+      labelStyle: TextStyle(
+        color: Colors.grey,
+        fontWeight: FontWeight.w900,
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: HistColours.cHighlight),
+      )
+  );
+
+  validateField(value, String warning) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter the type name.';
+    } else {
+        //name = value;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -33,31 +60,13 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: HistColours.cForward,
-                    fontWeight: FontWeight.w900,
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the type name.';
-                    } else {
-                      //name = value;
-                    }
-                    return null;
-                  },
                   cursorColor: HistColours.cHighlight,
-                  decoration: const InputDecoration(
-                    focusColor: HistColours.cHighlight,
-                    labelText: 'Type Name',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: HistColours.cHighlight),
-                    )
-                  ),
+
+                  style: formTextStyle,
+                  decoration: formDecoration,
+                  validator: (value) {
+                    return validateField(value, 'Please enter the type name.');
+                  },
                 ),
                 Container(
                   width: screenWidth,
@@ -65,10 +74,10 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                     child: const Text(
                       'Submit',
                       style: TextStyle(
+                        fontSize: 18,
                         color: HistColours.cBack,
                         fontWeight: FontWeight.w900,
-                        fontSize: 18,
-                      ),
+                      )
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
