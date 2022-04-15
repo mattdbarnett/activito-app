@@ -23,5 +23,9 @@ class RecordType {
     return description;
   }
 
+  String getFormat() {
+    return lines.toString();
+  }
+
   RecordType(this.title, this.author, this.description, this.creationDateTime, this.lines);
 }
