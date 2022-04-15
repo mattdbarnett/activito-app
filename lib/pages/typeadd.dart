@@ -114,6 +114,8 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             globals.typesAdd(typeName, "Current User", typeDescription, [typeString]);
+                            globals.typesUpdateList();
+                            Navigator.of(context).pop();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Adding record type...'),
