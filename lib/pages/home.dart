@@ -98,7 +98,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                         child: const Icon(
                           Icons.settings,
                           size: 40,
-                          color: HistColours.cText,
+                          color: HistColours.cBack,
                         ),
                       ),
                     ],

@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
@@ -51,10 +50,12 @@ List<Widget> getRecordWidgets(BuildContext context) {
   List<Widget> recordsWidgets = [];
 
   recordsWidgets.add(
-    const SizedBox(
+    SizedBox(
+      width: MediaQuery.of(context).size.width,
       height: 20,
     ),
   );
+
 
   if (records.isNotEmpty) {
     for (int x = 0; x <= records.length - 1; x++) {
@@ -286,6 +287,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                         style: const TextStyle(
                           color: HistColours.cBack,
                           fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.italic,
                           fontSize: 12,
                         ),
                       ),
@@ -330,9 +332,9 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                             children: <TextSpan>[
                               TextSpan(
                                 text: currentRecord.type.author + " "
-                                    + currentRecord.type.lines[0] + " "
+                                    + currentRecord.type.lines[0] + " at "
                                     + DateFormat('kk:mm (yyyy-MM-dd)')
-                                    .format(currentRecord.type.creationDateTime),
+                                    .format(currentRecord.dateTime),
                                 style: const TextStyle(
                                   color: HistColours.cHighlight,
                                   fontWeight: FontWeight.w400,
@@ -344,6 +346,7 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                           ),
                         ),
                       ),
+                      const SizedBox(width: 15),
                     ],
                   ),
                   const SizedBox(height: 15),
