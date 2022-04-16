@@ -37,7 +37,7 @@ SizedBox appbarBack(BuildContext context) {
       onPressed: () {
         Navigator.of(context).pop();
       },
-      child: const Icon(Icons.arrow_back),
+      child: const Icon(Icons.arrow_back, color: HistColours.cBack,),
     )
   );
 }
