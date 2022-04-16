@@ -9,8 +9,8 @@ import 'colours.dart';
 
 List<Record> records = [];
 
-void recordsAdd(type, user) {
-  records.add(Record(type, user, DateTime.now()));
+void recordsAdd(type) {
+  records.add(Record(type, DateTime.now()));
 }
 
 void recordsClear() {
@@ -46,13 +46,31 @@ List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
   return recordTypes;
 }
 
+List<Widget> getRecordWidgets(BuildContext context) {
+  List<Widget> recordsWidgets = [];
+
+  if (records.isNotEmpty) {
+    for (int x = 0; x <= records.length - 1; x++) {
+      recordsWidgets.add(recordContainer(context, records[x]));
+    }
+  }
+  return recordsWidgets;
+}
+
 Widget tAddContainer(BuildContext context, RecordType currentType) {
   double screenWidth = MediaQuery.of(context).size.width;
 
   return Column(
     children: [
       InkWell(
-      onTap: () {},
+      onTap: () {
+        recordsAdd(currentType);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Adding record...'),
+          ),
+        );
+      },
           child: Container(
               height: 125,
               width: screenWidth * 0.9,
@@ -272,5 +290,49 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
           ),
         ],
       )
+  );
+}
+
+Widget recordContainer(BuildContext context, Record currentRecord) {
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  return Column(
+    children: [
+      InkWell(
+          onTap: () {},
+          child: Container(
+              height: 75,
+              width: screenWidth * 0.9,
+              decoration: const BoxDecoration(
+                  color: HistColours.cBack,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      const SizedBox(width: 15),
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: currentRecord.type.title,
+                              style: const TextStyle(
+                                color: HistColours.cHighlight,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ))),
+    ],
   );
 }
