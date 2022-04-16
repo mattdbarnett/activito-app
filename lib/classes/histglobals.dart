@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import 'package:intl/intl.dart';
 
 import 'colours.dart';
 
@@ -48,6 +49,12 @@ List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
 
 List<Widget> getRecordWidgets(BuildContext context) {
   List<Widget> recordsWidgets = [];
+
+  recordsWidgets.add(
+    const SizedBox(
+      height: 20,
+    ),
+  );
 
   if (records.isNotEmpty) {
     for (int x = 0; x <= records.length - 1; x++) {
@@ -298,14 +305,17 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
 
   return Column(
     children: [
-      InkWell(
-          onTap: () {},
-          child: Container(
-              height: 75,
-              width: screenWidth * 0.9,
-              decoration: const BoxDecoration(
-                  color: HistColours.cBack,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+      Row(
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          Container(
+              width: screenWidth * 0.776,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(color: HistColours.cHighlight),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,25 +324,39 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                   Row(
                     children: [
                       const SizedBox(width: 15),
-                      RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: currentRecord.type.title,
-                              style: const TextStyle(
-                                color: HistColours.cHighlight,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 18,
+                      Flexible(
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: currentRecord.type.author + " "
+                                    + currentRecord.type.lines[0] + " "
+                                    + DateFormat('kk:mm (yyyy-MM-dd)')
+                                    .format(currentRecord.type.creationDateTime),
+                                style: const TextStyle(
+                                  color: HistColours.cHighlight,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 18,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                 ],
-              ))),
+              )),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
     ],
   );
 }
