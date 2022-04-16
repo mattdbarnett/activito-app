@@ -23,5 +23,12 @@ class RecordType {
     return description;
   }
 
+  String getFormat() {
+    return author + " "
+      + lines[0] + " at "
+      + DateFormat('kk:mm (yyyy-MM-dd)')
+      .format(creationDateTime);
+  }
+
   RecordType(this.title, this.author, this.description, this.creationDateTime, this.lines);
 }

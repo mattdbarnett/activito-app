@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/classes/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
+import 'package:history_logging_app/classes/histglobals.dart' as globals;
 
 class HistoryList extends StatefulWidget {
   const HistoryList ({Key? key}) : super(key: key);
@@ -71,6 +72,11 @@ class _HistoryHomeState extends State<HistoryList> {
               Radius.circular(20),
               ),
               ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: globals.getRecordWidgets(context),
+                )
+              )
             )
           ),
         ],

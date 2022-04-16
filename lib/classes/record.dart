@@ -1,8 +1,9 @@
 
+import 'package:history_logging_app/classes/recordtype.dart';
+
 class Record {
-  String type;
-  String user;
+  RecordType type;
   DateTime dateTime;
 
-  Record(this.type, this.user, this.dateTime);
+  Record(this.type, this.dateTime);
 }
