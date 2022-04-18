@@ -27,6 +27,10 @@ void typesRemove(removedType) {
   types.removeWhere((type) => type == removedType);
 }
 
+void typesClear() {
+  types.clear();
+}
+
 void typesUpdateList() {
   typeListStateNotifier.value = !typeListStateNotifier.value;
 }

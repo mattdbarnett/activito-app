@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/classes/colours.dart';
+import 'shared/colours.dart';
 import 'package:history_logging_app/pages/home.dart';
 
 void main() {
