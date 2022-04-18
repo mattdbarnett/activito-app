@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/classes/colours.dart';
+import 'package:history_logging_app/shared/cleardialog.dart';
+import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import 'package:history_logging_app/classes/histglobals.dart' as globals;
+import '../shared/histglobals.dart' as globals;
 
 class HistoryList extends StatefulWidget {
   const HistoryList ({Key? key}) : super(key: key);
@@ -32,7 +33,15 @@ class _HistoryHomeState extends State<HistoryList> {
             child: const Icon(Icons.filter_alt)
           ),
           TextButton(
-            onPressed: () {  },
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                return clearDialog(context,
+                    "Are you sure you want to clear all records?",
+                    globals.recordsClear());
+              });
+            },
             style: TextButton.styleFrom(
               backgroundColor: HistColours.cHighlight,
               elevation: 1,
