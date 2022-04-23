@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/shared/histglobals.dart';
 import '../shared/colours.dart';
 
-AlertDialog clearDialog(BuildContext context, String dialogText, void clearFunction) {
+AlertDialog clearDialog(BuildContext context,
+    String dialogText,
+    void clearFunction) {
 
   TextStyle fontStyle = const TextStyle(
   fontWeight: FontWeight.w600,
@@ -21,6 +24,8 @@ AlertDialog clearDialog(BuildContext context, String dialogText, void clearFunct
         ElevatedButton(
             onPressed: () {
               clearFunction;
+
+              pagesUpdate();
 
               Navigator.pop(context);
             },
