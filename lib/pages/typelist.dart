@@ -27,14 +27,14 @@ class _HistoryTypeListState extends State<HistoryTypeList> {
             [
               const Spacer(),
               TextButton(
-                onPressed: () {
+                onPressed: () => {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to clear all types?",
                             globals.typesClear());
-                      });
+                      }),
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: HistColours.cHighlight,

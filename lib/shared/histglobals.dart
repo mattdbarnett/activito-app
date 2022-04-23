@@ -5,6 +5,7 @@ import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/typelist.dart';
 import 'package:intl/intl.dart';
 
+import '../pages/recordlist.dart';
 import 'colours.dart';
 
 List<Record> records = [];
@@ -33,6 +34,15 @@ void typesClear() {
 
 void typesUpdateList() {
   typeListStateNotifier.value = !typeListStateNotifier.value;
+}
+
+void recordsUpdateList() {
+  recordListStateNotifier.value = !recordListStateNotifier.value;
+}
+
+void pagesUpdate() {
+  typesUpdateList();
+  recordsUpdateList();
 }
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
