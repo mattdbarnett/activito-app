@@ -27,22 +27,41 @@ class _HistorySettingsState extends State<HistorySettings> {
         sections: [
           SettingsSection(
             tiles: <SettingsTile>[
-              SettingsTile.navigation(
-                leading: const Icon(Icons.home, color: HistColours.cHighlight),
-                title: const Text('Example 1'),
-                value: const Text('Example 1'),
+              SettingsTile(
+                leading: const Icon(Icons.delete, color: HistColours.cHighlight),
+                title: const Text('Clear'),
                 onPressed: (BuildContext context) {},
               ),
               SettingsTile.navigation(
-                leading: const Icon(Icons.home, color: HistColours.cHighlight),
-                title: const Text('Example 2'),
-                value: const Text('Example 2'),
+                leading: const Icon(Icons.color_lens, color: HistColours.cHighlight),
+                title: const Text('Colours'),
+                value: Text(HistColours.cHighlight.toString()),
                 onPressed: (BuildContext context) {},
               ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.developer_mode, color: HistColours.cHighlight),
+                title: const Text('Developer Mode'),
+                initialValue: false,
+                activeSwitchColor: HistColours.cHighlight,
+                onToggle: (bool value) {  },
+              ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.note_add_outlined, color: HistColours.cHighlight),
+                title: const Text('New Types'),
+                initialValue: true,
+                activeSwitchColor: HistColours.cHighlight,
+                onToggle: (bool value) {  },
+              ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.dark_mode, color: HistColours.cHighlight),
+                title: const Text('Dark Theme'),
+                initialValue: false,
+                activeSwitchColor: HistColours.cHighlight,
+                onToggle: (bool value) {  },
+              ),
               SettingsTile.navigation(
-                leading: const Icon(Icons.home, color: HistColours.cHighlight),
-                title: const Text('Example 3'),
-                value: const Text('Example 3'),
+                leading: const Icon(Icons.help_sharp, color: HistColours.cHighlight),
+                title: const Text('About'),
                 onPressed: (BuildContext context) {},
               ),
             ],
