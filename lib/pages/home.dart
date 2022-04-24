@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/pages/settings.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
@@ -93,7 +94,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => const HistoryTypeList()));
+                              builder: (BuildContext context) => const HistorySettings()));
                         },
                         child: const Icon(
                           Icons.settings,
