@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/typelist.dart';
@@ -82,108 +83,138 @@ List<Widget> getRecordWidgets(BuildContext context) {
 Widget tAddContainer(BuildContext context, RecordType currentType) {
   double screenWidth = MediaQuery.of(context).size.width;
 
+  SizedBox content = SizedBox(
+      height: 125,
+      width: screenWidth * 0.9,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 15),
+          Row(
+            children: [
+              const SizedBox(width: 15),
+              RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    const TextSpan(
+                      text: 'Type: ',
+                      style: TextStyle(
+                        color: HistColours.cBack,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 18,
+                      ),
+                    ),
+                    TextSpan(
+                      text: currentType.getTitle(),
+                      style: const TextStyle(
+                        color: HistColours.cBack,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 5),
+          Row(
+            children: [
+              const SizedBox(width: 15),
+              Flexible(
+                child: Text(
+                  currentType.getAuthor() + ", " + currentType.getCreationDT(),
+                  style: const TextStyle(
+                    color: HistColours.cBack,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 12,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 5),
+          Row(
+            children: [
+              const SizedBox(width: 15),
+              Flexible(
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      const TextSpan(
+                        text: 'Description: ',
+                        style: TextStyle(
+                          color: HistColours.cBack,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12,
+                        ),
+                      ),
+                      TextSpan(
+                        text: currentType.getDesc(),
+                        style: const TextStyle(
+                          color: HistColours.cBack,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ));
+
   return Column(
     children: [
-      InkWell(
-      onTap: () {
-        recordsAdd(currentType);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Adding record...'),
+      Container(
+        decoration: const BoxDecoration(
+        color: HistColours.cHighlight,
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: Slidable(
+          // Specify a key if the Slidable is dismissible.
+          key: const ValueKey(0),
+
+          // The start action pane is the one at the left or the top side.
+          startActionPane: ActionPane(
+            extentRatio: 0.6,
+            // A motion is a widget used to control how the pane animates.
+            motion: const BehindMotion(),
+
+            // All actions are defined in the children parameter.
+            children: [
+              // A SlidableAction can have an icon and/or a label.
+              SlidableAction(
+                onPressed: (BuildContext context) {},
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              ),
+              SlidableAction(
+                onPressed: (BuildContext context) {},
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.white,
+                icon: Icons.share,
+                label: 'Share',
+              ),
+              SlidableAction(
+                onPressed: (BuildContext context) {},
+                backgroundColor: Colors.transparent,
+                foregroundColor: Colors.white,
+                icon: Icons.add,
+                label: 'Add',
+              ),
+            ],
           ),
-        );
-      },
-          child: Container(
-              height: 125,
-              width: screenWidth * 0.9,
-              decoration: const BoxDecoration(
-                  color: HistColours.cHighlight,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      const SizedBox(width: 15),
-                      RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            const TextSpan(
-                              text: 'Type: ',
-                              style: TextStyle(
-                                color: HistColours.cBack,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 18,
-                              ),
-                            ),
-                            TextSpan(
-                              text: currentType.getTitle(),
-                              style: const TextStyle(
-                                color: HistColours.cBack,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      const SizedBox(width: 15),
-                      Flexible(
-                        child: Text(
-                          currentType.getAuthor() +
-                              ", " +
-                              currentType.getCreationDT(),
-                          style: const TextStyle(
-                            color: HistColours.cBack,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 12,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      const SizedBox(width: 15),
-                      Flexible(
-                        child: RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              const TextSpan(
-                                text: 'Description: ',
-                                style: TextStyle(
-                                  color: HistColours.cBack,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              TextSpan(
-                                text: currentType.getDesc(),
-                                style: const TextStyle(
-                                  color: HistColours.cBack,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ))),
+          child: content,
+        ),
+      ),
       const SizedBox(
         height: 20,
       )
