@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../classes/colours.dart';
+import '../shared/colours.dart';
 
 AppBar secondaryAppbar(BuildContext context, [List<Widget> inputActions = const []]) {
 

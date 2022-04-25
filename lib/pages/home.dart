@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/classes/colours.dart';
+import 'package:history_logging_app/pages/settings.dart';
+import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
 import 'package:history_logging_app/pages/typelist.dart';
@@ -41,7 +42,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                       "History Logging",
                       style: TextStyle(
                         color: HistColours.cHighlight,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w600,
                         fontSize: 36,
                       ),
                     )
@@ -93,7 +94,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => const HistoryTypeList()));
+                              builder: (BuildContext context) => const HistorySettings()));
                         },
                         child: const Icon(
                           Icons.settings,
@@ -126,7 +127,7 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
       titleText,
       style: const TextStyle(
         color: HistColours.cBack,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         fontSize: 24,
       ),
     ),
