@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/classes/colours.dart';
+import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import 'package:history_logging_app/classes/histglobals.dart' as globals;
+import '../shared/histglobals.dart' as globals;
 
 class HistoryTypeAdd extends StatefulWidget {
   const HistoryTypeAdd ({Key? key}) : super(key: key);
@@ -114,7 +114,6 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             globals.typesAdd(typeName, "Current User", typeDescription, [typeString]);
-                            globals.typesUpdateList();
                             Navigator.of(context).pop();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
