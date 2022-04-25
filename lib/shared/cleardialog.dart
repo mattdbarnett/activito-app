@@ -7,7 +7,7 @@ AlertDialog clearDialog(BuildContext context,
     void clearFunction) {
 
   TextStyle fontStyle = const TextStyle(
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w500,
   fontSize: 16,
   );
 
@@ -15,7 +15,7 @@ AlertDialog clearDialog(BuildContext context,
       title:
       const Text("Clear",
         style: TextStyle(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           fontSize: 20,
         ),
       ),

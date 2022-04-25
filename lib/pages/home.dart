@@ -42,7 +42,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                       "History Logging",
                       style: TextStyle(
                         color: HistColours.cHighlight,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w600,
                         fontSize: 36,
                       ),
                     )
@@ -127,7 +127,7 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
       titleText,
       style: const TextStyle(
         color: HistColours.cBack,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         fontSize: 24,
       ),
     ),

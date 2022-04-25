@@ -170,7 +170,9 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
             motion: const BehindMotion(),
             children: [
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  recordsAdd(currentType);
+                },
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.add,
@@ -333,7 +335,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
         child: Slidable(
           key: const ValueKey(0),
           startActionPane: ActionPane(
-            extentRatio: 0.6,
+            extentRatio: 0.65,
             motion: const BehindMotion(),
             children: [
               SlidableAction(
