@@ -23,10 +23,12 @@ List<RecordType> types = [];
 
 void typesAdd(title, author, description, List<String> lines) {
   types.add(RecordType(title, author, description, DateTime.now(), lines));
+  typesUpdateList();
 }
 
 void typesRemove(removedType) {
   types.removeWhere((type) => type == removedType);
+  typesUpdateList();
 }
 
 void typesClear() {
@@ -339,7 +341,9 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
             motion: const BehindMotion(),
             children: [
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  typesRemove(currentType);
+                },
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
