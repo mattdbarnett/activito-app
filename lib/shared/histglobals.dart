@@ -85,7 +85,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
 
   SizedBox content = SizedBox(
       height: 125,
-      width: screenWidth * 0.9,
+      width: screenWidth * 0.84,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,6 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
           const SizedBox(height: 15),
           Row(
             children: [
-              const SizedBox(width: 15),
               RichText(
                 text: TextSpan(
                   children: <TextSpan>[
@@ -122,7 +121,6 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
           const SizedBox(height: 5),
           Row(
             children: [
-              const SizedBox(width: 15),
               Flexible(
                 child: Text(
                   currentType.getAuthor() + ", " + currentType.getCreationDT(),
@@ -139,7 +137,6 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
           const SizedBox(height: 5),
           Row(
             children: [
-              const SizedBox(width: 15),
               Flexible(
                 child: RichText(
                   text: TextSpan(
@@ -212,7 +209,25 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
               ),
             ],
           ),
-          child: content,
+          child: Row(
+            children: [
+              SizedBox(
+                width: screenWidth * 0.02,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: HistColours.cBack,
+                ),
+                width: screenWidth * 0.01,
+                height: 60,
+              ),
+              SizedBox(
+                width: screenWidth * 0.03,
+              ),
+              content,
+            ],
+          ),
         ),
       ),
       const SizedBox(
