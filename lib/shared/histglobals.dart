@@ -9,6 +9,9 @@ import 'package:intl/intl.dart';
 import '../pages/recordlist.dart';
 import 'colours.dart';
 
+
+// -- Records 
+
 List<Record> records = [];
 
 void recordsAdd(type) {
@@ -18,6 +21,8 @@ void recordsAdd(type) {
 void recordsClear() {
   records.clear();
 }
+
+// -- Types
 
 List<RecordType> types = [];
 
@@ -35,6 +40,8 @@ void typesClear() {
   types.clear();
 }
 
+// -- Page Updaters
+
 void typesUpdateList() {
   typeListStateNotifier.value = !typeListStateNotifier.value;
 }
@@ -47,6 +54,8 @@ void pagesUpdate() {
   typesUpdateList();
   recordsUpdateList();
 }
+
+// -- Widget Lists
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
   List<Widget> recordTypes = [];
@@ -81,6 +90,8 @@ List<Widget> getRecordWidgets(BuildContext context) {
   }
   return recordsWidgets;
 }
+
+// -- Widgets
 
 // This type container is for the "Add Records" page
 Widget tAddContainer(BuildContext context, RecordType currentType) {
