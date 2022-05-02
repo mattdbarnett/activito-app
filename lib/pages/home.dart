@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/pages/settings.dart';
+import 'package:page_transition/page_transition.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
@@ -120,8 +121,8 @@ class _HistoryHomeState extends State<HistoryHome> {
 TextButton menuButton(BuildContext context, String titleText, double screenWidth, var newPage) {
   return TextButton(
     onPressed: () {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => newPage));
+      Navigator.push(context,
+          PageTransition(childCurrent: const HistoryHome(), child: newPage, type: PageTransitionType.rightToLeftJoined));
     },
     child: Text(
       titleText,
