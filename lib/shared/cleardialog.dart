@@ -33,7 +33,7 @@ AlertDialog clearDialog(BuildContext context,
                 .styleFrom(
               primary: HistColours.cHighlight,
             ),
-            child: Text('Clear', style: fontStyle)
+            child: Text('Yes', style: fontStyle)
         ),
         ElevatedButton(
             onPressed: () {
