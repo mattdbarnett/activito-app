@@ -6,6 +6,7 @@ import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/typelist.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../pages/recordlist.dart';
 import 'colours.dart';
@@ -34,7 +35,6 @@ void typesAdd(title, author, description, List<String> lines) {
 
 void typesRemove(removedType) {
   types.removeWhere((type) => type == removedType);
-  typesUpdateList();
 }
 
 void typesClear() {
@@ -193,7 +193,12 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 label: 'Add',
               ),
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Share.share("I just " +
+                      currentType.lines[0].toString() +
+                      " right now! :)");
+                },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.share,
@@ -363,6 +368,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                         );
                       });
                 },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -376,7 +382,12 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                 label: 'Edit',
               ),
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Share.share("I have a new activity type! It's called " +
+                      currentType.title +
+                      "! :)");
+                },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.share,
