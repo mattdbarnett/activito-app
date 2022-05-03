@@ -105,7 +105,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                               PageTransition(
                                   childCurrent: const HistoryHome(),
                                   child: const HistorySettings(),
-                                  type: PageTransitionType.rightToLeftJoined));
+                                  type: PageTransitionType.rightToLeftWithFade));
                         },
                         child: const Icon(
                           Icons.settings,
@@ -144,7 +144,7 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
           PageTransition(
               childCurrent: const HistoryHome(),
               child: newPage,
-              type: PageTransitionType.rightToLeftJoined));
+              type: PageTransitionType.rightToLeftWithFade));
     },
     child: Text(
       titleText,
