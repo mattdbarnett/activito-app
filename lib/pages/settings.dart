@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/pages/settingscolours.dart';
+import 'package:page_transition/page_transition.dart';
 import '../shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
@@ -52,7 +54,13 @@ class _HistorySettingsState extends State<HistorySettings> {
                 leading: const Icon(Icons.color_lens, color: HistColours.cHighlight),
                 title: Text('Colours', style: settingsFontStyle),
                 value: Text(HistColours.cHighlight.toString()),
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Navigator.push(context,
+                      PageTransition(
+                          childCurrent: const HistorySettings(),
+                          child: const HistorySettingsColours(),
+                          type: PageTransitionType.rightToLeftWithFade));
+                },
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.developer_mode, color: HistColours.cHighlight),
