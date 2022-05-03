@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
 
 import '../pages/recordlist.dart';
@@ -353,7 +354,14 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
             children: [
               SlidableAction(
                 onPressed: (BuildContext context) {
-                  typesRemove(currentType);
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return clearDialog(context,
+                            "Are you sure you want to delete this event type?",
+                            typesRemove(currentType)
+                        );
+                      });
                 },
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
