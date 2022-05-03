@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
+import 'package:history_logging_app/pages/home.dart';
 import 'package:history_logging_app/pages/typelist.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
@@ -52,6 +53,10 @@ void recordsUpdateList() {
   recordListStateNotifier.value = !recordListStateNotifier.value;
 }
 
+void homeUpdate() {
+  homeStateNotifier.value = !homeStateNotifier.value;
+}
+
 void pagesUpdate() {
   typesUpdateList();
   recordsUpdateList();
@@ -60,6 +65,22 @@ void pagesUpdate() {
 void clearAll() {
   recordsClear();
   typesClear();
+}
+
+// -- Settings
+
+bool newTypes = true;
+
+bool getNewTypes() {
+  return newTypes;
+}
+
+void setNewTypes(bool value) {
+  newTypes = value;
+}
+
+void toggleNewTypes() {
+  newTypes = !newTypes;
 }
 
 // -- Widget Lists
