@@ -34,6 +34,7 @@ void typesAdd(title, author, description, List<String> lines) {
 }
 
 void typesRemove(removedType) {
+  print("removing type...");
   types.removeWhere((type) => type == removedType);
 }
 
@@ -54,6 +55,11 @@ void recordsUpdateList() {
 void pagesUpdate() {
   typesUpdateList();
   recordsUpdateList();
+}
+
+void clearAll() {
+  recordsClear();
+  typesClear();
 }
 
 // -- Widget Lists
@@ -364,7 +370,8 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to delete this event type?",
-                            typesRemove(currentType)
+                            "typeRemove",
+                            currentType,
                         );
                       });
                 },
