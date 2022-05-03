@@ -1,8 +1,11 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 import 'package:settings_ui/settings_ui.dart';
+import '../shared/histglobals.dart' as globals;
 
 class HistorySettings extends StatefulWidget {
   const HistorySettings ({Key? key}) : super(key: key);
@@ -35,7 +38,15 @@ class _HistorySettingsState extends State<HistorySettings> {
               SettingsTile(
                 leading: const Icon(Icons.delete, color: HistColours.cHighlight),
                 title: Text('Clear', style: settingsFontStyle),
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return clearDialog(context,
+                            "Are you sure you want to clear all content?",
+                            "clearAll");
+                      });
+                },
               ),
               SettingsTile.navigation(
                 leading: const Icon(Icons.color_lens, color: HistColours.cHighlight),
@@ -46,16 +57,19 @@ class _HistorySettingsState extends State<HistorySettings> {
               SettingsTile.switchTile(
                 leading: const Icon(Icons.developer_mode, color: HistColours.cHighlight),
                 title: Text('Developer Mode', style: settingsFontStyle),
-                initialValue: false,
+                initialValue: true,
                 activeSwitchColor: HistColours.cHighlight,
-                onToggle: (bool value) {  },
+                onToggle: (bool value) { value = !value; },
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.note_add_outlined, color: HistColours.cHighlight),
                 title: Text('New Types', style: settingsFontStyle),
-                initialValue: true,
+                initialValue: globals.getNewTypes(),
                 activeSwitchColor: HistColours.cHighlight,
-                onToggle: (bool value) {  },
+                onToggle: (bool value) {
+                  globals.toggleNewTypes();
+                  setState(() {});
+                },
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.dark_mode, color: HistColours.cHighlight),

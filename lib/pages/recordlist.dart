@@ -20,7 +20,7 @@ class _HistoryHomeState extends State<HistoryList> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
         valueListenable: recordListStateNotifier,
-        builder: (_, homeState, __)
+        builder: (_, recordListState, __)
     {
       return Scaffold(
         backgroundColor: HistColours.cBack,

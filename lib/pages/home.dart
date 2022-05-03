@@ -6,6 +6,9 @@ import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import '../shared/histglobals.dart' as globals;
+
+final ValueNotifier<bool> homeStateNotifier = ValueNotifier(false);
 
 class HistoryHome extends StatefulWidget {
   const HistoryHome ({Key? key}) : super(key: key);
@@ -19,6 +22,10 @@ class _HistoryHomeState extends State<HistoryHome> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    return ValueListenableBuilder<bool>(
+        valueListenable: homeStateNotifier,
+        builder: (_, homeState, __)
+    {
     return Scaffold(
       backgroundColor: HistColours.cBack,
       body: Column(
@@ -80,7 +87,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                   const SizedBox(height: 30),
                   menuButton(context, "Add Records", screenWidth, const HistoryAddRecord()),
                   const SizedBox(height: 30),
-                  menuButton(context, "Record Types", screenWidth, const HistoryTypeList()),
+                  newTypesCheck(context, screenWidth),
                   const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -118,6 +125,15 @@ class _HistoryHomeState extends State<HistoryHome> {
         ],
       ),
     );
+  });
+  }
+}
+
+Widget newTypesCheck(BuildContext context, double screenWidth) {
+  if(globals.getNewTypes()) {
+    return menuButton(context, "Record Types", screenWidth, const HistoryTypeList());
+  } else {
+    return const Spacer();
   }
 }
 
