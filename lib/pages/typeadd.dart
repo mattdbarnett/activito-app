@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
@@ -102,31 +103,43 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
 
                     Container(
                       width: screenWidth,
-                      child: ElevatedButton(
-                        child: const Text(
-                          'Submit',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: HistColours.cBack,
-                            fontWeight: FontWeight.w900,
-                          )
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            globals.typesAdd(typeName, "Current User", typeDescription, [typeString]);
-                            Navigator.of(context).pop();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Adding record type...'),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                globals.typesAdd(typeName, "Current User", typeDescription, [typeString]);
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Adding record type...'),
+                                  ),
+                                );
+                              }
+                            },
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.only(
+                                left: 15,
+                                right: 15,
                               ),
-                            );
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: HistColours.cHighlight,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40.0)),
-                        )
+                              backgroundColor: HistColours.cHighlight,
+                              elevation: 1,
+                              fixedSize: const Size.fromHeight(47),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40.0)),
+                            ),
+                            child: const Text(
+                              "Submit",
+                              style: TextStyle(
+                                color: HistColours.cBack,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       margin: const EdgeInsets.only(top: 20.0),
                     )
