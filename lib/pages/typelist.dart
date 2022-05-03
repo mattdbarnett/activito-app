@@ -33,7 +33,7 @@ class _HistoryTypeListState extends State<HistoryTypeList> {
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to clear all types?",
-                            globals.typesClear());
+                            "typesClear");
                       }),
                 },
                 style: TextButton.styleFrom(

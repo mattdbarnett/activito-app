@@ -45,7 +45,7 @@ class _HistoryHomeState extends State<HistoryList> {
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to clear all records?",
-                            globals.recordsClear());
+                            "recordsClear");
                       });
                 },
                 style: TextButton.styleFrom(
