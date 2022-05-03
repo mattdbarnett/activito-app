@@ -94,8 +94,11 @@ class _HistoryHomeState extends State<HistoryHome> {
                           shape: const CircleBorder(),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => const HistorySettings()));
+                          Navigator.push(context,
+                              PageTransition(
+                                  childCurrent: const HistoryHome(),
+                                  child: const HistorySettings(),
+                                  type: PageTransitionType.rightToLeftJoined));
                         },
                         child: const Icon(
                           Icons.settings,
@@ -122,7 +125,10 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
   return TextButton(
     onPressed: () {
       Navigator.push(context,
-          PageTransition(childCurrent: const HistoryHome(), child: newPage, type: PageTransitionType.rightToLeftJoined));
+          PageTransition(
+              childCurrent: const HistoryHome(),
+              child: newPage,
+              type: PageTransitionType.rightToLeftJoined));
     },
     child: Text(
       titleText,
