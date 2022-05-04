@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../shared/globals.dart' as globals;
 
 class HistColours {
 
@@ -11,7 +12,7 @@ class HistColours {
   static const Color cNavy = Color(0xFF2E86AB);
   static const Color cPurple = Color(0xFF585191);
   static const Color cSpace = Color(0xFF2E2D4D);
-  static const Color cOlive = Color(0xFF353531);
+  static const Color cOlive = Color(0xFF4C4C4C);
   static const Color cDarkGrey = Color(0xFF6B6B63);
   static const Color cGrey = Color(0xFF919187);
 
@@ -30,8 +31,22 @@ class HistColours {
     cHIndex = index;
   }
 
-  static const Color cText = Color(0xFFEEF0EB);
-  static const Color cBack = Color(0xFFD8DAD6);
+  static const Color cBackLight = Color(0xFFD8DAD6);
+  static const Color cBackDark = Color(0xFF353531);
+  static Color cBack = cBackLight;
+  static Color cText = cBackDark;
+
+  static void setBackground() {
+    if(globals.getDarkMode()) {
+      cBack = cBackDark;
+      cText = cBackLight;
+    } else {
+      cBack = cBackLight;
+      cText = cBackDark;
+    }
+    globals.settingsUpdate();
+  }
+
   static const Color cForward = Color(0xFF686963);
 
 }

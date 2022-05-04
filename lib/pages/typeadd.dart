@@ -19,15 +19,15 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
   late String typeString = "";
   late String typeDescription = "";
 
-  TextStyle formTextStyle = const TextStyle(
+  TextStyle formTextStyle = TextStyle(
     fontSize: 18,
-    color: HistColours.cForward,
+    color: HistColours.cText,
     fontWeight: FontWeight.w900,
   );
 
   InputDecoration getFormDecoration(String label) {
     return InputDecoration(
-        focusColor: HistColours.cHighlight,
+        focusColor: HistColours.cText,
         labelText: label,
         labelStyle: const TextStyle(
           color: Colors.grey,
@@ -65,7 +65,7 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      cursorColor: HistColours.cHighlight,
+                      cursorColor: HistColours.cText,
 
                       style: formTextStyle,
                       decoration: getFormDecoration("Type Name"),
@@ -76,7 +76,7 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                     ),
 
                     TextFormField(
-                      cursorColor: HistColours.cHighlight,
+                      cursorColor: HistColours.cText,
                       maxLines: 2,
 
                       style: formTextStyle,
@@ -88,7 +88,7 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                     ),
 
                     TextFormField(
-                      cursorColor: HistColours.cHighlight,
+                      cursorColor: HistColours.cText,
                       maxLines: 3,
 
                       style: formTextStyle,
@@ -132,7 +132,7 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                             child: const Text(
                               "Submit",
                               style: TextStyle(
-                                color: HistColours.cBack,
+                                color: HistColours.cBackLight,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
                               ),

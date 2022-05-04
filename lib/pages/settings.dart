@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/main.dart';
 import 'package:history_logging_app/pages/settingscolours.dart';
 import 'package:page_transition/page_transition.dart';
 import '../shared/cleardialog.dart';
@@ -60,7 +61,6 @@ class _HistorySettingsState extends State<HistorySettings> {
                       leading: Icon(
                           Icons.color_lens, color: HistColours.cHighlight),
                       title: Text('Colours', style: settingsFontStyle),
-                      value: Text(HistColours.cHighlight.toString()),
                       onPressed: (BuildContext context) {
                         Navigator.push(context,
                             PageTransition(
@@ -94,9 +94,20 @@ class _HistorySettingsState extends State<HistorySettings> {
                       leading: Icon(
                           Icons.dark_mode, color: HistColours.cHighlight),
                       title: Text('Dark Theme', style: settingsFontStyle),
-                      initialValue: false,
+                      initialValue: globals.getDarkMode(),
                       activeSwitchColor: HistColours.cHighlight,
-                      onToggle: (bool value) {},
+                      onToggle: (bool value) {
+                        globals.toggleDarkMode();
+
+                        if(globals.getDarkMode()) {
+                          themeNotifier.value = ThemeMode.dark;
+                        } else {
+                          themeNotifier.value = ThemeMode.light;
+                        }
+
+                        value = globals.getDarkMode();
+                        setState(() {});
+                      },
                     ),
                     SettingsTile.navigation(
                       leading: Icon(

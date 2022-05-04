@@ -9,8 +9,8 @@ AlertDialog clearDialog(BuildContext context,
     [var clearItem]) {
 
   TextStyle fontStyle = const TextStyle(
-  fontWeight: FontWeight.w500,
-  fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
   );
 
   void getClearFunction() {
@@ -40,10 +40,11 @@ AlertDialog clearDialog(BuildContext context,
 
   return AlertDialog(
       title:
-      const Text("Clear",
+      Text("Clear",
         style: TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 20,
+            color: HistColours.cText,
         ),
       ),
       content: Text(dialogText, style: fontStyle),

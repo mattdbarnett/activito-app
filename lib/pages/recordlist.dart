@@ -58,7 +58,7 @@ class _HistoryHomeState extends State<HistoryList> {
                 child: const Text(
                   "Clear",
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                   ),

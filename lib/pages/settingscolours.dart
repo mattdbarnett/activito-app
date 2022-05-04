@@ -23,7 +23,7 @@ class _HistorySettingsColoursState extends State<HistorySettingsColours> {
       return const Center(
           child: Icon(
             Icons.done,
-            color: HistColours.cBack,
+            color: HistColours.cBackLight,
           )
       );
     } else {

@@ -87,6 +87,17 @@ void toggleNewTypes() {
   newTypes = !newTypes;
 }
 
+bool darkMode = false;
+
+bool getDarkMode() {
+  return darkMode;
+}
+
+void toggleDarkMode() {
+  darkMode = !darkMode;
+  HistColours.setBackground();
+}
+
 // -- Widget Lists
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
@@ -143,7 +154,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 const TextSpan(
                   text: 'Type: ',
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
@@ -152,7 +163,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 TextSpan(
                   text: currentType.getTitle(),
                   style: const TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w300,
                     fontSize: 20,
                   ),
@@ -165,7 +176,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
             child: Text(
               currentType.getAuthor() + ", " + currentType.getCreationDT(),
               style: const TextStyle(
-                color: HistColours.cBack,
+                color: HistColours.cBackLight,
                 fontWeight: FontWeight.w900,
                 fontSize: 12,
                 fontStyle: FontStyle.italic,
@@ -180,7 +191,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 const TextSpan(
                   text: 'Description: ',
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.italic,
                     fontSize: 12,
@@ -189,7 +200,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 TextSpan(
                   text: currentType.getDesc(),
                   style: const TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
                   ),
@@ -245,7 +256,7 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
-                  color: HistColours.cBack,
+                  color: HistColours.cBackLight,
                 ),
                 width: screenWidth * 0.01,
                 height: 60,
@@ -290,7 +301,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                 const TextSpan(
                   text: 'Type: ',
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
                     fontSize: 18,
@@ -299,7 +310,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                 TextSpan(
                   text: currentType.getTitle(),
                   style: const TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w300,
                     fontSize: 20,
                   ),
@@ -312,7 +323,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
             child: Text(
               currentType.getAuthor() + ", " + currentType.getCreationDT(),
               style: const TextStyle(
-                color: HistColours.cBack,
+                color: HistColours.cBackLight,
                 fontWeight: FontWeight.w900,
                 fontSize: 12,
                 fontStyle: FontStyle.italic,
@@ -327,7 +338,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                   const TextSpan(
                     text: 'Description: ',
                     style: TextStyle(
-                      color: HistColours.cBack,
+                      color: HistColours.cBackLight,
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.italic,
                       fontSize: 12,
@@ -336,7 +347,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                   TextSpan(
                     text: currentType.getDesc(),
                     style: const TextStyle(
-                      color: HistColours.cBack,
+                      color: HistColours.cBackLight,
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
                     ),
@@ -353,7 +364,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                   const TextSpan(
                     text: 'Format: ',
                     style: TextStyle(
-                      color: HistColours.cBack,
+                      color: HistColours.cBackLight,
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.italic,
                       fontSize: 12,
@@ -362,7 +373,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                   TextSpan(
                     text: currentType.getFormat(),
                     style: const TextStyle(
-                      color: HistColours.cBack,
+                      color: HistColours.cBackLight,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.italic,
                       fontSize: 12,
@@ -435,7 +446,7 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
-                  color: HistColours.cBack,
+                  color: HistColours.cBackLight,
                 ),
                 width: screenWidth * 0.01,
                 height: 80,
@@ -489,7 +500,7 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                                     + DateFormat('kk:mm (yyyy-MM-dd)')
                                     .format(currentRecord.dateTime),
                                 style: TextStyle(
-                                  color: HistColours.cHighlight,
+                                  color: HistColours.cText,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.italic,
                                   fontSize: 18,

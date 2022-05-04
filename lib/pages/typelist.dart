@@ -46,7 +46,7 @@ class _HistoryTypeListState extends State<HistoryTypeList> {
                 child: const Text(
                   "Clear",
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                   ),
@@ -76,7 +76,7 @@ class _HistoryTypeListState extends State<HistoryTypeList> {
               heroTag: "btnadd",
               tooltip: 'Add Type',
               backgroundColor: HistColours.cHighlight,
-              child: const Icon(Icons.add, color:  HistColours.cBack),
+              child: const Icon(Icons.add, color:  HistColours.cBackLight),
             ),
           );
         }

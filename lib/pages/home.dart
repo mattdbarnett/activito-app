@@ -110,7 +110,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                         child: const Icon(
                           Icons.settings,
                           size: 40,
-                          color: HistColours.cBack,
+                          color: HistColours.cBackLight,
                         ),
                       ),
                     ],
@@ -149,7 +149,7 @@ TextButton menuButton(BuildContext context, String titleText, double screenWidth
     child: Text(
       titleText,
       style: const TextStyle(
-        color: HistColours.cBack,
+        color: HistColours.cBackLight,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       ),
