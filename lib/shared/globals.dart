@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/home.dart';
+import 'package:history_logging_app/pages/settings.dart';
 import 'package:history_logging_app/pages/typelist.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,6 @@ void typesAdd(title, author, description, List<String> lines) {
 }
 
 void typesRemove(removedType) {
-  print("removing type...");
   types.removeWhere((type) => type == removedType);
 }
 
@@ -55,6 +55,10 @@ void recordsUpdateList() {
 
 void homeUpdate() {
   homeStateNotifier.value = !homeStateNotifier.value;
+}
+
+void settingsUpdate() {
+  settingsStateNotifier.value = !settingsStateNotifier.value;
 }
 
 void pagesUpdate() {
@@ -201,9 +205,9 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
   return Column(
     children: [
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
         color: HistColours.cHighlight,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: Slidable(
           key: const ValueKey(0),
           startActionPane: ActionPane(
@@ -271,9 +275,9 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
       margin: const EdgeInsets.only(
           bottom: 20
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           color: HistColours.cHighlight,
-          borderRadius: BorderRadius.all(Radius.circular(20))
+          borderRadius: const BorderRadius.all(Radius.circular(20))
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -375,9 +379,9 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
   return Column(
     children: [
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             color: HistColours.cHighlight,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: Slidable(
           key: const ValueKey(0),
           startActionPane: ActionPane(
@@ -484,7 +488,7 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                                     + currentRecord.type.lines[0] + " at "
                                     + DateFormat('kk:mm (yyyy-MM-dd)')
                                     .format(currentRecord.dateTime),
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: HistColours.cHighlight,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.italic,

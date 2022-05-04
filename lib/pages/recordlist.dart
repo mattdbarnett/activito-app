@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 final ValueNotifier<bool> recordListStateNotifier = ValueNotifier(false);
 
