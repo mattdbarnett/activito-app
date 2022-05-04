@@ -1,29 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/shared/histglobals.dart';
+import 'package:history_logging_app/shared/globals.dart';
 import '../shared/colours.dart';
+import '../shared/globals.dart' as globals;
 
 AlertDialog clearDialog(BuildContext context,
     String dialogText,
-    void clearFunction) {
+    String clearFunctionStr,
+    [var clearItem]) {
 
   TextStyle fontStyle = const TextStyle(
-  fontWeight: FontWeight.w500,
-  fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
   );
+
+  void getClearFunction() {
+    switch(clearFunctionStr) {
+      case "recordsClear": {
+        globals.recordsClear();
+        break;
+      }
+      case "typesClear": {
+        globals.typesClear();
+        break;
+      }
+      case "recordRemove": {
+        //placeholder
+        break;
+      }
+      case "typeRemove": {
+        globals.typesRemove(clearItem);
+        break;
+      }
+      case "clearAll": {
+        globals.clearAll();
+        break;
+      }
+    }
+  }
 
   return AlertDialog(
       title:
-      const Text("Clear",
+      Text("Clear",
         style: TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 20,
+          color: HistColours.cText,
         ),
       ),
       content: Text(dialogText, style: fontStyle),
       actions: [
         ElevatedButton(
             onPressed: () {
-              clearFunction;
+              getClearFunction();
 
               pagesUpdate();
 
@@ -33,7 +61,7 @@ AlertDialog clearDialog(BuildContext context,
                 .styleFrom(
               primary: HistColours.cHighlight,
             ),
-            child: Text('Clear', style: fontStyle)
+            child: Text('Yes', style: fontStyle)
         ),
         ElevatedButton(
             onPressed: () {

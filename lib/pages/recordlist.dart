@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 final ValueNotifier<bool> recordListStateNotifier = ValueNotifier(false);
 
@@ -20,7 +20,7 @@ class _HistoryHomeState extends State<HistoryList> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
         valueListenable: recordListStateNotifier,
-        builder: (_, homeState, __)
+        builder: (_, recordListState, __)
     {
       return Scaffold(
         backgroundColor: HistColours.cBack,
@@ -29,23 +29,13 @@ class _HistoryHomeState extends State<HistoryList> {
             [
               const Spacer(),
               TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: HistColours.cHighlight,
-                    elevation: 1,
-                    fixedSize: const Size(47, 47),
-                    shape: const CircleBorder(),
-                  ),
-                  child: const Icon(Icons.filter_alt)
-              ),
-              TextButton(
                 onPressed: () {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to clear all records?",
-                            globals.recordsClear());
+                            "recordsClear");
                       });
                 },
                 style: TextButton.styleFrom(
@@ -58,7 +48,7 @@ class _HistoryHomeState extends State<HistoryList> {
                 child: const Text(
                   "Clear",
                   style: TextStyle(
-                    color: HistColours.cBack,
+                    color: HistColours.cBackLight,
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                   ),
@@ -100,3 +90,70 @@ class _HistoryHomeState extends State<HistoryList> {
     });
   }
 }
+
+Widget recordContainer(BuildContext context, List<String> currentRecord) {
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  return Column(
+    children: [
+      Row(
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          Container(
+              width: screenWidth * 0.7657,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(color: HistColours.cHighlight),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      const SizedBox(width: 15),
+                      Flexible(
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(text: currentRecord[0], style: recordStyleImp),
+                              TextSpan(text: currentRecord[1], style: recordStyle),
+                              TextSpan(text: currentRecord[2], style: recordStyle),
+                              TextSpan(text: currentRecord[3], style: recordStyle),
+                              TextSpan(text: currentRecord[4], style: recordStyleImp),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                ],
+              )),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+    ],
+  );
+}
+
+TextStyle recordStyle = TextStyle(
+  color: HistColours.cText,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle recordStyleImp = TextStyle(
+  color: HistColours.cText,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);

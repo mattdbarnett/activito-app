@@ -1,10 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/pages/settings.dart';
+import 'package:page_transition/page_transition.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import '../shared/globals.dart' as globals;
+import '../shared/devcontent.dart' as content;
+
+final ValueNotifier<bool> homeStateNotifier = ValueNotifier(false);
 
 class HistoryHome extends StatefulWidget {
   const HistoryHome ({Key? key}) : super(key: key);
@@ -18,7 +23,12 @@ class _HistoryHomeState extends State<HistoryHome> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    return ValueListenableBuilder<bool>(
+        valueListenable: homeStateNotifier,
+        builder: (_, homeState, __)
+    {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: HistColours.cBack,
       body: Column(
         children: [
@@ -38,8 +48,8 @@ class _HistoryHomeState extends State<HistoryHome> {
                       top: 50
                       ,
                     ),
-                    child: const Text(
-                      "History Logging",
+                    child: Text(
+                      content.getCurrentContent()["home_title"].toString(),
                       style: TextStyle(
                         color: HistColours.cHighlight,
                         fontWeight: FontWeight.w600,
@@ -75,11 +85,19 @@ class _HistoryHomeState extends State<HistoryHome> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  menuButton(context, "View List", screenWidth, const HistoryList()),
+                  menuButton(context,
+                      content.getCurrentContent()["home_view"].toString(),
+                      screenWidth,
+                      const HistoryList()),
                   const SizedBox(height: 30),
-                  menuButton(context, "Add Records", screenWidth, const HistoryAddRecord()),
+                  menuButton(context,
+                      content.getCurrentContent()["home_add_records"].toString(),
+                      screenWidth,
+                      const HistoryAddRecord()),
                   const SizedBox(height: 30),
-                  menuButton(context, "Record Types", screenWidth, const HistoryTypeList()),
+                  newTypesCheck(context,
+                      screenWidth,
+                      content.getCurrentContent()["home_add_types"].toString()),
                   const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,13 +111,16 @@ class _HistoryHomeState extends State<HistoryHome> {
                           shape: const CircleBorder(),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => const HistorySettings()));
+                          Navigator.push(context,
+                              PageTransition(
+                                  childCurrent: const HistoryHome(),
+                                  child: const HistorySettings(),
+                                  type: PageTransitionType.rightToLeftWithFade));
                         },
                         child: const Icon(
                           Icons.settings,
                           size: 40,
-                          color: HistColours.cBack,
+                          color: HistColours.cBackLight,
                         ),
                       ),
                     ],
@@ -114,19 +135,31 @@ class _HistoryHomeState extends State<HistoryHome> {
         ],
       ),
     );
+  });
+  }
+}
+
+Widget newTypesCheck(BuildContext context, double screenWidth, String title) {
+  if(globals.getNewTypes()) {
+    return menuButton(context, title, screenWidth, const HistoryTypeList());
+  } else {
+    return const Spacer();
   }
 }
 
 TextButton menuButton(BuildContext context, String titleText, double screenWidth, var newPage) {
   return TextButton(
     onPressed: () {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => newPage));
+      Navigator.push(context,
+          PageTransition(
+              childCurrent: const HistoryHome(),
+              child: newPage,
+              type: PageTransitionType.rightToLeftWithFade));
     },
     child: Text(
       titleText,
       style: const TextStyle(
-        color: HistColours.cBack,
+        color: HistColours.cBackLight,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       ),

@@ -37,6 +37,8 @@ dependencies:
   intl: ^0.17.0
   settings_ui: ^2.0.2
   flutter_slidable: ^1.2.0
+  page_transition: ^2.0.5
+  share_plus: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +82,10 @@ flutter:
     - family: Manrope
       fonts:
          - asset: fonts/Manrope-Regular.ttf
+         - asset: fonts/Manrope-Bold.ttf
+           weight: 700
+         - asset: fonts/Manrope-ExtraBold.ttf
+           weight: 900
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

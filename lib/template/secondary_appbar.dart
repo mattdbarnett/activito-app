@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../shared/colours.dart';
+import '../shared/globals.dart' as globals;
 
 AppBar secondaryAppbar(BuildContext context, [List<Widget> inputActions = const []]) {
 
@@ -35,9 +36,10 @@ SizedBox appbarBack(BuildContext context) {
       backgroundColor: HistColours.cHighlight,
       key: const Key('DrawerButton'),
       onPressed: () {
+        globals.homeUpdate();
         Navigator.of(context).pop();
       },
-      child: const Icon(Icons.arrow_back, color: HistColours.cBack,),
+      child: const Icon(Icons.arrow_back, color: HistColours.cBackLight),
     )
   );
 }
