@@ -9,6 +9,7 @@ import 'package:history_logging_app/pages/typelist.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import '../shared/devcontent.dart' as content;
 
 import '../pages/recordlist.dart';
 import 'colours.dart';
@@ -55,6 +56,7 @@ void recordsUpdateList() {
 
 void homeUpdate() {
   homeStateNotifier.value = !homeStateNotifier.value;
+  print("test");
 }
 
 void settingsUpdate() {
@@ -98,6 +100,16 @@ void toggleDarkMode() {
   HistColours.setBackground();
 }
 
+bool devMode = false;
+
+bool getDevMode() {
+  return devMode;
+}
+
+void toggleDevMode() {
+  devMode = !devMode;
+  content.setCurrentContent(devMode);
+}
 // -- Widget Lists
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {

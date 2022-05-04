@@ -36,7 +36,10 @@ class _HistoryHomeState extends State<HistoryList> {
                     fixedSize: const Size(47, 47),
                     shape: const CircleBorder(),
                   ),
-                  child: const Icon(Icons.filter_alt)
+                  child: const Icon(
+                    Icons.filter_alt,
+                    color: HistColours.cBackLight
+                  )
               ),
               TextButton(
                 onPressed: () {

@@ -73,10 +73,12 @@ class _HistorySettingsState extends State<HistorySettings> {
                       leading: Icon(
                           Icons.developer_mode, color: HistColours.cHighlight),
                       title: Text('Developer Mode', style: settingsFontStyle),
-                      initialValue: true,
+                      initialValue: globals.getDevMode(),
                       activeSwitchColor: HistColours.cHighlight,
                       onToggle: (bool value) {
-                        value = !value;
+                        globals.toggleDevMode();
+                        globals.homeUpdate();
+                        setState(() {});
                       },
                     ),
                     SettingsTile.switchTile(
