@@ -1,10 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/pages/settings.dart';
+import 'package:page_transition/page_transition.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import '../shared/globals.dart' as globals;
+
+final ValueNotifier<bool> homeStateNotifier = ValueNotifier(false);
 
 class HistoryHome extends StatefulWidget {
   const HistoryHome ({Key? key}) : super(key: key);
@@ -18,6 +22,10 @@ class _HistoryHomeState extends State<HistoryHome> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    return ValueListenableBuilder<bool>(
+        valueListenable: homeStateNotifier,
+        builder: (_, homeState, __)
+    {
     return Scaffold(
       backgroundColor: HistColours.cBack,
       body: Column(
@@ -38,7 +46,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                       top: 50
                       ,
                     ),
-                    child: const Text(
+                    child: Text(
                       "History Logging",
                       style: TextStyle(
                         color: HistColours.cHighlight,
@@ -79,7 +87,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                   const SizedBox(height: 30),
                   menuButton(context, "Add Records", screenWidth, const HistoryAddRecord()),
                   const SizedBox(height: 30),
-                  menuButton(context, "Record Types", screenWidth, const HistoryTypeList()),
+                  newTypesCheck(context, screenWidth),
                   const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,8 +101,11 @@ class _HistoryHomeState extends State<HistoryHome> {
                           shape: const CircleBorder(),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => const HistorySettings()));
+                          Navigator.push(context,
+                              PageTransition(
+                                  childCurrent: const HistoryHome(),
+                                  child: const HistorySettings(),
+                                  type: PageTransitionType.rightToLeftWithFade));
                         },
                         child: const Icon(
                           Icons.settings,
@@ -114,14 +125,26 @@ class _HistoryHomeState extends State<HistoryHome> {
         ],
       ),
     );
+  });
+  }
+}
+
+Widget newTypesCheck(BuildContext context, double screenWidth) {
+  if(globals.getNewTypes()) {
+    return menuButton(context, "Record Types", screenWidth, const HistoryTypeList());
+  } else {
+    return const Spacer();
   }
 }
 
 TextButton menuButton(BuildContext context, String titleText, double screenWidth, var newPage) {
   return TextButton(
     onPressed: () {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => newPage));
+      Navigator.push(context,
+          PageTransition(
+              childCurrent: const HistoryHome(),
+              child: newPage,
+              type: PageTransitionType.rightToLeftWithFade));
     },
     child: Text(
       titleText,

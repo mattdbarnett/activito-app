@@ -3,11 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
+import 'package:history_logging_app/pages/home.dart';
+import 'package:history_logging_app/pages/settings.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import 'package:history_logging_app/shared/cleardialog.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../pages/recordlist.dart';
 import 'colours.dart';
+
+
+// -- Records 
 
 List<Record> records = [];
 
@@ -19,6 +26,8 @@ void recordsClear() {
   records.clear();
 }
 
+// -- Types
+
 List<RecordType> types = [];
 
 void typesAdd(title, author, description, List<String> lines) {
@@ -28,12 +37,13 @@ void typesAdd(title, author, description, List<String> lines) {
 
 void typesRemove(removedType) {
   types.removeWhere((type) => type == removedType);
-  typesUpdateList();
 }
 
 void typesClear() {
   types.clear();
 }
+
+// -- Page Updaters
 
 void typesUpdateList() {
   typeListStateNotifier.value = !typeListStateNotifier.value;
@@ -43,10 +53,41 @@ void recordsUpdateList() {
   recordListStateNotifier.value = !recordListStateNotifier.value;
 }
 
+void homeUpdate() {
+  homeStateNotifier.value = !homeStateNotifier.value;
+}
+
+void settingsUpdate() {
+  settingsStateNotifier.value = !settingsStateNotifier.value;
+}
+
 void pagesUpdate() {
   typesUpdateList();
   recordsUpdateList();
 }
+
+void clearAll() {
+  recordsClear();
+  typesClear();
+}
+
+// -- Settings
+
+bool newTypes = true;
+
+bool getNewTypes() {
+  return newTypes;
+}
+
+void setNewTypes(bool value) {
+  newTypes = value;
+}
+
+void toggleNewTypes() {
+  newTypes = !newTypes;
+}
+
+// -- Widget Lists
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {
   List<Widget> recordTypes = [];
@@ -81,6 +122,8 @@ List<Widget> getRecordWidgets(BuildContext context) {
   }
   return recordsWidgets;
 }
+
+// -- Widgets
 
 // This type container is for the "Add Records" page
 Widget tAddContainer(BuildContext context, RecordType currentType) {
@@ -162,9 +205,9 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
   return Column(
     children: [
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
         color: HistColours.cHighlight,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: Slidable(
           key: const ValueKey(0),
           startActionPane: ActionPane(
@@ -181,7 +224,12 @@ Widget tAddContainer(BuildContext context, RecordType currentType) {
                 label: 'Add',
               ),
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Share.share("I just " +
+                      currentType.lines[0].toString() +
+                      " right now! :)");
+                },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.share,
@@ -227,9 +275,9 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
       margin: const EdgeInsets.only(
           bottom: 20
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           color: HistColours.cHighlight,
-          borderRadius: BorderRadius.all(Radius.circular(20))
+          borderRadius: const BorderRadius.all(Radius.circular(20))
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -331,9 +379,9 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
   return Column(
     children: [
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             color: HistColours.cHighlight,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: const BorderRadius.all(Radius.circular(20))),
         child: Slidable(
           key: const ValueKey(0),
           startActionPane: ActionPane(
@@ -342,8 +390,17 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
             children: [
               SlidableAction(
                 onPressed: (BuildContext context) {
-                  typesRemove(currentType);
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return clearDialog(context,
+                            "Are you sure you want to delete this event type?",
+                            "typeRemove",
+                            currentType,
+                        );
+                      });
                 },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -357,7 +414,12 @@ Widget tTypeContainer(BuildContext context, RecordType currentType) {
                 label: 'Edit',
               ),
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Share.share("I have a new activity type! It's called " +
+                      currentType.title +
+                      "! :)");
+                },
+                autoClose: false,
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.share,
@@ -426,7 +488,7 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                                     + currentRecord.type.lines[0] + " at "
                                     + DateFormat('kk:mm (yyyy-MM-dd)')
                                     .format(currentRecord.dateTime),
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: HistColours.cHighlight,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.italic,

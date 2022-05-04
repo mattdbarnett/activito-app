@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 final ValueNotifier<bool> recordListStateNotifier = ValueNotifier(false);
 
@@ -20,7 +20,7 @@ class _HistoryHomeState extends State<HistoryList> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
         valueListenable: recordListStateNotifier,
-        builder: (_, homeState, __)
+        builder: (_, recordListState, __)
     {
       return Scaffold(
         backgroundColor: HistColours.cBack,
@@ -45,7 +45,7 @@ class _HistoryHomeState extends State<HistoryList> {
                       builder: (BuildContext context) {
                         return clearDialog(context,
                             "Are you sure you want to clear all records?",
-                            globals.recordsClear());
+                            "recordsClear");
                       });
                 },
                 style: TextButton.styleFrom(

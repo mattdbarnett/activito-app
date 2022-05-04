@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 class HistoryAddRecord extends StatefulWidget {
   const HistoryAddRecord ({Key? key}) : super(key: key);
