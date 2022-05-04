@@ -1,9 +1,8 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 class HistoryTypeAdd extends StatefulWidget {
   const HistoryTypeAdd ({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
           color: Colors.grey,
           fontWeight: FontWeight.w900,
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: HistColours.cHighlight),
         )
     );

@@ -4,7 +4,7 @@ import '../shared/cleardialog.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/pages/typeadd.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 final ValueNotifier<bool> typeListStateNotifier = ValueNotifier(false);
 

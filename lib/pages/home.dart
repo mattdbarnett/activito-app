@@ -6,7 +6,7 @@ import '../shared/colours.dart';
 import 'package:history_logging_app/pages/recordadd.dart';
 import 'package:history_logging_app/pages/recordlist.dart';
 import 'package:history_logging_app/pages/typelist.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 final ValueNotifier<bool> homeStateNotifier = ValueNotifier(false);
 
@@ -46,7 +46,7 @@ class _HistoryHomeState extends State<HistoryHome> {
                       top: 50
                       ,
                     ),
-                    child: const Text(
+                    child: Text(
                       "History Logging",
                       style: TextStyle(
                         color: HistColours.cHighlight,

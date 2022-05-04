@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../shared/colours.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 AppBar secondaryAppbar(BuildContext context, [List<Widget> inputActions = const []]) {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/shared/histglobals.dart';
+import 'package:history_logging_app/shared/globals.dart';
 import '../shared/colours.dart';
-import '../shared/histglobals.dart' as globals;
+import '../shared/globals.dart' as globals;
 
 AlertDialog clearDialog(BuildContext context,
     String dialogText,
