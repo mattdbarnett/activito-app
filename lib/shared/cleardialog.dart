@@ -44,7 +44,7 @@ AlertDialog clearDialog(BuildContext context,
         style: TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 20,
-            color: HistColours.cText,
+          color: HistColours.cText,
         ),
       ),
       content: Text(dialogText, style: fontStyle),

@@ -115,7 +115,46 @@ class _HistorySettingsState extends State<HistorySettings> {
                       leading: Icon(
                           Icons.help_sharp, color: HistColours.cHighlight),
                       title: Text('About', style: settingsFontStyle),
-                      onPressed: (BuildContext context) {},
+                      onPressed: (BuildContext context) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("About",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: HistColours.cText,
+                                  ),
+                                ),
+                                content: const Text("Hi! I'm Matt! I'm a "
+                                    "software developer from Huddersfield "
+                                    "currently living in Cardiff :). I made "
+                                    "this app to improve my experience using "
+                                    "Flutter and to help track my eating "
+                                    "habits."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      style: ElevatedButton
+                                          .styleFrom(
+                                        primary:
+                                        HistColours.cHighlight,
+                                      ),
+                                      child: const Text('Close',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16,
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      },
                     ),
                   ],
                 ),
