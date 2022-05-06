@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/main.dart';
 import 'package:history_logging_app/pages/settingscolours.dart';
+import 'package:history_logging_app/pages/settingsusername.dart';
 import 'package:page_transition/page_transition.dart';
 import '../shared/cleardialog.dart';
 import '../shared/colours.dart';
@@ -119,7 +120,7 @@ class _HistorySettingsState extends State<HistorySettings> {
                         Navigator.push(context,
                             PageTransition(
                                 childCurrent: const HistorySettings(),
-                                child: const HistorySettingsColours(),
+                                child: const HistorySettingsUsername(),
                                 type: PageTransitionType.rightToLeftWithFade));
                       },
                     ),

@@ -106,6 +106,16 @@ void toggleDevMode() {
   devMode = !devMode;
   content.setCurrentContent(devMode);
 }
+
+String username = "Current User";
+
+String getUsername() {
+  return username;
+}
+
+void setUsername(String input) {
+  username = input;
+}
 // -- Widget Lists
 
 List<Widget> getTypeWidgets(BuildContext context, String typeContainer) {

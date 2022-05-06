@@ -28,6 +28,7 @@ class _HistoryHomeState extends State<HistoryHome> {
         builder: (_, homeState, __)
     {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: HistColours.cBack,
       body: Column(
         children: [
