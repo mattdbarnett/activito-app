@@ -71,6 +71,25 @@ class _HistorySettingsState extends State<HistorySettings> {
                     ),
                     SettingsTile.switchTile(
                       leading: Icon(
+                          Icons.dark_mode, color: HistColours.cHighlight),
+                      title: Text('Dark Theme', style: settingsFontStyle),
+                      initialValue: globals.getDarkMode(),
+                      activeSwitchColor: HistColours.cHighlight,
+                      onToggle: (bool value) {
+                        globals.toggleDarkMode();
+
+                        if(globals.getDarkMode()) {
+                          themeNotifier.value = ThemeMode.dark;
+                        } else {
+                          themeNotifier.value = ThemeMode.light;
+                        }
+
+                        value = globals.getDarkMode();
+                        setState(() {});
+                      },
+                    ),
+                    SettingsTile.switchTile(
+                      leading: Icon(
                           Icons.developer_mode, color: HistColours.cHighlight),
                       title: Text('Developer Mode', style: settingsFontStyle),
                       initialValue: globals.getDevMode(),
@@ -92,23 +111,16 @@ class _HistorySettingsState extends State<HistorySettings> {
                         setState(() {});
                       },
                     ),
-                    SettingsTile.switchTile(
+                    SettingsTile.navigation(
                       leading: Icon(
-                          Icons.dark_mode, color: HistColours.cHighlight),
-                      title: Text('Dark Theme', style: settingsFontStyle),
-                      initialValue: globals.getDarkMode(),
-                      activeSwitchColor: HistColours.cHighlight,
-                      onToggle: (bool value) {
-                        globals.toggleDarkMode();
-
-                        if(globals.getDarkMode()) {
-                          themeNotifier.value = ThemeMode.dark;
-                        } else {
-                          themeNotifier.value = ThemeMode.light;
-                        }
-
-                        value = globals.getDarkMode();
-                        setState(() {});
+                          Icons.drive_file_rename_outline, color: HistColours.cHighlight),
+                      title: Text('Username', style: settingsFontStyle),
+                      onPressed: (BuildContext context) {
+                        Navigator.push(context,
+                            PageTransition(
+                                childCurrent: const HistorySettings(),
+                                child: const HistorySettingsColours(),
+                                type: PageTransitionType.rightToLeftWithFade));
                       },
                     ),
                     SettingsTile.navigation(

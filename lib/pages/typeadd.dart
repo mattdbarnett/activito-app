@@ -1,11 +1,16 @@
 
 import 'package:flutter/material.dart';
+import '../classes/recordtype.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 import '../shared/globals.dart' as globals;
 
 class HistoryTypeAdd extends StatefulWidget {
-  const HistoryTypeAdd ({Key? key}) : super(key: key);
+  final RecordType? recordType;
+
+  const HistoryTypeAdd ({Key? key,
+    required bool editMode,
+    this.recordType }) : super(key: key);
 
   @override
   State<HistoryTypeAdd> createState() => _HistoryTypeAddState();
@@ -35,7 +40,10 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: HistColours.cHighlight),
-        )
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: HistColours.cText),
+        ),
     );
   }
 

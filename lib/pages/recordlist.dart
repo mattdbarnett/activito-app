@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
+import 'package:intl/intl.dart';
+import '../classes/record.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 import '../shared/globals.dart' as globals;
@@ -102,4 +104,66 @@ class _HistoryHomeState extends State<HistoryList> {
       );
     });
   }
+}
+
+Widget recordContainer(BuildContext context, Record currentRecord) {
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  return Column(
+    children: [
+      Row(
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          Container(
+              width: screenWidth * 0.776,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(color: HistColours.cHighlight),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      const SizedBox(width: 15),
+                      Flexible(
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: currentRecord.type.author + " "
+                                    + currentRecord.type.lines[0] + " at "
+                                    + DateFormat('kk:mm (yyyy-MM-dd)')
+                                        .format(currentRecord.dateTime),
+                                style: TextStyle(
+                                  color: HistColours.cText,
+                                  fontWeight: FontWeight.w400,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                ],
+              )),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+    ],
+  );
 }
