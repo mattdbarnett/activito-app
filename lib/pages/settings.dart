@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:history_logging_app/main.dart';
 import 'package:history_logging_app/pages/settingscolours.dart';
+import 'package:history_logging_app/pages/settingsusername.dart';
 import 'package:page_transition/page_transition.dart';
 import '../shared/cleardialog.dart';
 import '../shared/colours.dart';
@@ -60,7 +62,6 @@ class _HistorySettingsState extends State<HistorySettings> {
                       leading: Icon(
                           Icons.color_lens, color: HistColours.cHighlight),
                       title: Text('Colours', style: settingsFontStyle),
-                      value: Text(HistColours.cHighlight.toString()),
                       onPressed: (BuildContext context) {
                         Navigator.push(context,
                             PageTransition(
@@ -71,12 +72,33 @@ class _HistorySettingsState extends State<HistorySettings> {
                     ),
                     SettingsTile.switchTile(
                       leading: Icon(
-                          Icons.developer_mode, color: HistColours.cHighlight),
-                      title: Text('Developer Mode', style: settingsFontStyle),
-                      initialValue: true,
+                          Icons.dark_mode, color: HistColours.cHighlight),
+                      title: Text('Dark Theme', style: settingsFontStyle),
+                      initialValue: globals.getDarkMode(),
                       activeSwitchColor: HistColours.cHighlight,
                       onToggle: (bool value) {
-                        value = !value;
+                        globals.toggleDarkMode();
+
+                        if(globals.getDarkMode()) {
+                          themeNotifier.value = ThemeMode.dark;
+                        } else {
+                          themeNotifier.value = ThemeMode.light;
+                        }
+
+                        value = globals.getDarkMode();
+                        setState(() {});
+                      },
+                    ),
+                    SettingsTile.switchTile(
+                      leading: Icon(
+                          Icons.developer_mode, color: HistColours.cHighlight),
+                      title: Text('Developer Mode', style: settingsFontStyle),
+                      initialValue: globals.getDevMode(),
+                      activeSwitchColor: HistColours.cHighlight,
+                      onToggle: (bool value) {
+                        globals.toggleDevMode();
+                        globals.homeUpdate();
+                        setState(() {});
                       },
                     ),
                     SettingsTile.switchTile(
@@ -90,19 +112,62 @@ class _HistorySettingsState extends State<HistorySettings> {
                         setState(() {});
                       },
                     ),
-                    SettingsTile.switchTile(
+                    SettingsTile.navigation(
                       leading: Icon(
-                          Icons.dark_mode, color: HistColours.cHighlight),
-                      title: Text('Dark Theme', style: settingsFontStyle),
-                      initialValue: false,
-                      activeSwitchColor: HistColours.cHighlight,
-                      onToggle: (bool value) {},
+                          Icons.drive_file_rename_outline, color: HistColours.cHighlight),
+                      title: Text('Username', style: settingsFontStyle),
+                      onPressed: (BuildContext context) {
+                        Navigator.push(context,
+                            PageTransition(
+                                childCurrent: const HistorySettings(),
+                                child: const HistorySettingsUsername(),
+                                type: PageTransitionType.rightToLeftWithFade));
+                      },
                     ),
                     SettingsTile.navigation(
                       leading: Icon(
                           Icons.help_sharp, color: HistColours.cHighlight),
                       title: Text('About', style: settingsFontStyle),
-                      onPressed: (BuildContext context) {},
+                      onPressed: (BuildContext context) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("About",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: HistColours.cText,
+                                  ),
+                                ),
+                                content: const Text("Hi! I'm Matt! I'm a "
+                                    "software developer from Huddersfield "
+                                    "currently living in Cardiff :). I made "
+                                    "this app to improve my experience using "
+                                    "Flutter and to help track my eating "
+                                    "habits."),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      style: ElevatedButton
+                                          .styleFrom(
+                                        primary:
+                                        HistColours.cHighlight,
+                                      ),
+                                      child: const Text('Close',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16,
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      },
                     ),
                   ],
                 ),

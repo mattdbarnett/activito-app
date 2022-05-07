@@ -39,7 +39,7 @@ SizedBox appbarBack(BuildContext context) {
         globals.homeUpdate();
         Navigator.of(context).pop();
       },
-      child: const Icon(Icons.arrow_back, color: HistColours.cBack,),
+      child: const Icon(Icons.arrow_back, color: HistColours.cBackLight),
     )
   );
 }
