@@ -5,12 +5,15 @@ import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 import '../shared/globals.dart' as globals;
 
+
 class HistoryTypeAdd extends StatefulWidget {
   final RecordType? recordType;
+  final bool editMode;
 
   const HistoryTypeAdd ({Key? key,
-    required bool editMode,
+    required this.editMode,
     this.recordType }) : super(key: key);
+
 
   @override
   State<HistoryTypeAdd> createState() => _HistoryTypeAddState();
@@ -30,9 +33,26 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
     fontWeight: FontWeight.w900,
   );
 
-  InputDecoration getFormDecoration(String label) {
+  RecordType? getType() {
+    if(widget.editMode) {
+      return widget.recordType;
+    } else {
+      return RecordType("", "", "", DateTime.now(), [""]);
+    }
+  }
+
+  String editCheck(String oldStr, String newStr) {
+    if(newStr.isEmpty) {
+      return oldStr;
+    } else {
+      return newStr;
+    }
+  }
+
+  InputDecoration getFormDecoration(String label, [String hintText = ""]) {
     return InputDecoration(
         focusColor: HistColours.cText,
+        hintText: hintText,
         labelText: label,
         labelStyle: const TextStyle(
           color: Colors.grey,
@@ -76,7 +96,10 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                       cursorColor: HistColours.cText,
 
                       style: formTextStyle,
-                      decoration: getFormDecoration("Type Name"),
+                      decoration: getFormDecoration(
+                          "Type Name",
+                          getType()?.title ?? ""
+                      ),
                       validator: (value) {
                         typeName = value!;
                         return validateField(value, 'Please enter the type name.');
@@ -88,7 +111,10 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                       maxLines: 2,
 
                       style: formTextStyle,
-                      decoration: getFormDecoration("Record String"),
+                      decoration: getFormDecoration(
+                          "Record String",
+                          getType()?.lines[0] ?? ""
+                      ),
                       validator: (value) {
                         typeString = value!;
                         return validateField(value, 'Please enter the record string.');
@@ -100,7 +126,10 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                       maxLines: 3,
 
                       style: formTextStyle,
-                      decoration: getFormDecoration("Type Description"),
+                      decoration: getFormDecoration(
+                          "Type Description",
+                          getType()?.description ?? ""
+                      ),
                       validator: (value) {
                         typeDescription = value!;
                         return validateField(value, 'Please enter the type description.');
@@ -117,13 +146,30 @@ class _HistoryTypeAddState extends State<HistoryTypeAdd> {
                           TextButton(
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                globals.typesAdd(typeName, "Current User", typeDescription, [typeString]);
+                                if(!widget.editMode) {
+                                  globals.typesAdd(typeName,
+                                      globals.getUsername(),
+                                      typeDescription,
+                                      [typeString]
+                                  );
+                                  Navigator.of(context).pop();
+                                }
+                              }
+                              if(widget.editMode) {
+                                String editName = editCheck(
+                                    widget.recordType?.title ?? "",
+                                    typeName);
+                                String editDesc = editCheck(
+                                    widget.recordType?.description ?? "",
+                                    typeDescription);
+                                String editString = editCheck(
+                                    widget.recordType?.lines[0] ?? "",
+                                    typeString);
+                                globals.typesEdit(
+                                    widget.recordType ?? RecordType(
+                                        "ERROR", "ERROR", "ERROR", DateTime.now(), [""]),
+                                    [editName, editDesc, editString]);
                                 Navigator.of(context).pop();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Adding record type...'),
-                                  ),
-                                );
                               }
                             },
                             style: TextButton.styleFrom(

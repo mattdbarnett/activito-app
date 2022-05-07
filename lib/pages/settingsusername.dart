@@ -26,6 +26,7 @@ class _HistorySettingsUsernameState extends State<HistorySettingsUsername> {
 
   InputDecoration getFormDecoration(String label) {
     return InputDecoration(
+        hintText: globals.getUsername(),
         focusColor: HistColours.cText,
         labelText: label,
         labelStyle: const TextStyle(
@@ -50,7 +51,6 @@ class _HistorySettingsUsernameState extends State<HistorySettingsUsername> {
 
   @override
   Widget build(BuildContext context) {
-    usernameInput.text = globals.getUsername();
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -71,7 +71,8 @@ class _HistorySettingsUsernameState extends State<HistorySettingsUsername> {
                       controller: usernameInput,
                       cursorColor: HistColours.cText,
                       style: formTextStyle,
-                      decoration: getFormDecoration("Username"),
+                      decoration: getFormDecoration(
+                          "Username",),
                       validator: (value) {
                         username = value!;
                         return validateField(value, 'Please enter a username.');

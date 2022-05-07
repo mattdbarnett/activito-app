@@ -41,6 +41,16 @@ void typesClear() {
   types.clear();
 }
 
+void typesEdit(RecordType import, List<String> edits) {
+  RecordType oldType = types.firstWhere((type) => type == import);
+
+  oldType.title = edits[0];
+  oldType.description = edits[1];
+  oldType.lines[0] = edits[2];
+
+  typesUpdateList();
+}
+
 // -- Page Updaters
 
 void typesUpdateList() {
