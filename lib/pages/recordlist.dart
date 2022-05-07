@@ -29,19 +29,6 @@ class _HistoryHomeState extends State<HistoryList> {
             [
               const Spacer(),
               TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: HistColours.cHighlight,
-                    elevation: 1,
-                    fixedSize: const Size(47, 47),
-                    shape: const CircleBorder(),
-                  ),
-                  child: const Icon(
-                    Icons.filter_alt,
-                    color: HistColours.cBackLight
-                  )
-              ),
-              TextButton(
                 onPressed: () {
                   showDialog(
                       context: context,
@@ -132,17 +119,11 @@ Widget recordContainer(BuildContext context, List<String> currentRecord) {
                         child: RichText(
                           text: TextSpan(
                             children: <TextSpan>[
-                              TextSpan(
-                                text: currentRecord[0] + currentRecord[1]
-                                    + currentRecord[2] + currentRecord[3]
-                                    + currentRecord[4],
-                                style: TextStyle(
-                                  color: HistColours.cText,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 18,
-                                ),
-                              ),
+                              TextSpan(text: currentRecord[0], style: recordStyleImp),
+                              TextSpan(text: currentRecord[1], style: recordStyle),
+                              TextSpan(text: currentRecord[2], style: recordStyle),
+                              TextSpan(text: currentRecord[3], style: recordStyle),
+                              TextSpan(text: currentRecord[4], style: recordStyleImp),
                             ],
                           ),
                         ),
@@ -164,3 +145,15 @@ Widget recordContainer(BuildContext context, List<String> currentRecord) {
     ],
   );
 }
+
+TextStyle recordStyle = TextStyle(
+  color: HistColours.cText,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle recordStyleImp = TextStyle(
+  color: HistColours.cText,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
