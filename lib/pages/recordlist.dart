@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:history_logging_app/shared/cleardialog.dart';
-import 'package:intl/intl.dart';
-import '../classes/record.dart';
 import '../shared/colours.dart';
 import 'package:history_logging_app/template/secondary_appbar.dart';
 import '../shared/globals.dart' as globals;
@@ -106,7 +104,7 @@ class _HistoryHomeState extends State<HistoryList> {
   }
 }
 
-Widget recordContainer(BuildContext context, Record currentRecord) {
+Widget recordContainer(BuildContext context, List<String> currentRecord) {
   double screenWidth = MediaQuery.of(context).size.width;
 
   return Column(
@@ -135,10 +133,9 @@ Widget recordContainer(BuildContext context, Record currentRecord) {
                           text: TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: currentRecord.type.author + " "
-                                    + currentRecord.type.lines[0] + " at "
-                                    + DateFormat('kk:mm (yyyy-MM-dd)')
-                                        .format(currentRecord.dateTime),
+                                text: currentRecord[0] + currentRecord[1]
+                                    + currentRecord[2] + currentRecord[3]
+                                    + currentRecord[4],
                                 style: TextStyle(
                                   color: HistColours.cText,
                                   fontWeight: FontWeight.w400,

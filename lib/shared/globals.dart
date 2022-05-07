@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:history_logging_app/classes/record.dart';
 import 'package:history_logging_app/classes/recordtype.dart';
 import 'package:history_logging_app/pages/home.dart';
 import 'package:history_logging_app/pages/settings.dart';
 import 'package:history_logging_app/pages/typelist.dart';
+import 'package:intl/intl.dart';
 import '../pages/recordadd.dart';
 import '../shared/devcontent.dart' as content;
 
@@ -14,10 +14,15 @@ import 'colours.dart';
 
 // -- Records 
 
-List<Record> records = [];
+List<List<String>> records = [];
 
 void recordsAdd(type) {
-  records.add(Record(type, DateTime.now()));
+  records.add(
+    [
+      type.author, " ", type.lines[0], " at ",
+      DateFormat('kk:mm (yyyy-MM-dd)').format(DateTime.now()),
+    ]
+  );
 }
 
 void recordsClear() {
